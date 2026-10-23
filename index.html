@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MindScope · Mental Health Score Predictor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<main>
+  <section>
+    <div class="glass status" id="status" title="Click to re-check"><span class="dot"></span><span id="statusText">Checking server…</span></div>
+    <h1>MindScope</h1>
+    <p class="lede">Estimate a student's mental health score from daily social media use, sleep, study and stress.</p>
+
+    <div class="glass result" id="result">
+      <div class="gauge">
+        <svg viewBox="0 0 220 220">
+          <defs><linearGradient id="grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#e879f9"/></linearGradient></defs>
+          <circle class="track" cx="110" cy="110" r="92" fill="none" stroke-width="14"/>
+          <circle class="bar" id="bar" cx="110" cy="110" r="92" fill="none" stroke-width="14" stroke-dasharray="578" stroke-dashoffset="578"/>
+        </svg>
+        <div class="num"><b id="score">–</b><small>out of 10</small></div>
+      </div>
+      <div class="verdict" id="verdict">No prediction yet</div>
+      <p class="note" id="note">Fill in the form and press Predict score.</p>
+      <p class="fine">Model estimate from a student survey dataset. It is not a medical diagnosis.</p>
+    </div>
+  </section>
+
+  <form class="glass" id="form" autocomplete="off">
+    <h2>Student profile</h2>
+
+    <div class="f"><label for="age">Age</label><input id="age" type="number" min="10" max="100" value="20" required></div>
+    <div class="f"><span class="lab">Gender</span>
+      <div class="chips"><label><input type="radio" name="gender" value="Male" checked><span>Male</span></label><label><input type="radio" name="gender" value="Female"><span>Female</span></label></div></div>
+
+    <div class="f"><label for="country">Country</label><input id="country" type="text" list="countries" value="Bangladesh" required>
+      <datalist id="countries"><option>India<option>USA<option>Canada<option>Australia<option>UK<option>Germany<option>Mexico<option>Turkey<option>France<option>Bangladesh<option>Pakistan<option>Brazil<option>Japan<option>Spain<option>Italy<option>China<option>Nepal<option>Sri Lanka<option>Indonesia<option>Malaysia<option>Nigeria<option>Egypt<option>Russia<option>South Korea<option>Saudi Arabia<option>UAE<option>Netherlands<option>Sweden<option>Norway</datalist></div>
+    <div class="f"><label for="academic">Academic level</label>
+      <select id="academic"><option>Undergraduate<option>Graduate<option>High School</select></div>
+
+    <div class="f"><label for="platform">Most used platform</label>
+      <select id="platform"><option>Facebook<option>Instagram<option>TikTok<option>YouTube<option>WhatsApp<option>Snapchat<option>Twitter<option>LinkedIn<option>WeChat<option>LINE<option>KakaoTalk<option>VKontakte</select></div>
+    <div class="f"><label for="purpose">Main purpose</label>
+      <select id="purpose"><option>Entertainment<option>Networking<option>Education<option>News</select></div>
+
+    <div class="f"><label for="usage">Daily usage <output id="usageO">4 h</output></label><input id="usage" type="range" min="0" max="24" step="0.5" value="4"></div>
+    <div class="f"><label for="unlocks">Phone unlocks per day</label><input id="unlocks" type="number" min="0" value="60" required></div>
+
+    <div class="f"><label for="study">Study hours <output id="studyO">3 h</output></label><input id="study" type="range" min="0" max="24" step="0.5" value="3"></div>
+    <div class="f"><label for="activity">Physical activity <output id="activityO">1 h</output></label><input id="activity" type="range" min="0" max="24" step="0.5" value="1"></div>
+
+    <div class="f wide"><label for="sleep">Sleep per night <output id="sleepO">7 h</output></label><input id="sleep" type="range" min="0" max="24" step="0.5" value="7"></div>
+
+    <div class="f wide"><span class="lab">Stress level</span>
+      <div class="chips">
+        <label><input type="radio" name="stress" value="Low"><span>Low</span></label>
+        <label><input type="radio" name="stress" value="Medium" checked><span>Medium</span></label>
+        <label><input type="radio" name="stress" value="High"><span>High</span></label>
+        <label><input type="radio" name="stress" value="Very High"><span>Very High</span></label>
+      </div></div>
+
+    <div class="err" id="err" role="alert"></div>
+    <button type="submit" id="go">Predict score</button>
+  </form>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
