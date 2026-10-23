@@ -1,4 +1,4 @@
-const API = 'http://127.0.0.1:2300';
+const API = 'https://mental-health-score-8u11.onrender.com';
 const $ = id => document.getElementById(id);
 
 /* ---------- 3D background ---------- */
