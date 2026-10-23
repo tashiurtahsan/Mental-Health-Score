@@ -62,3 +62,7 @@ button:disabled{opacity:.6;cursor:wait;transform:none}
 @media(max-width:900px){main{grid-template-columns:1fr}.lede{max-width:none}}
 @media(max-width:520px){form{grid-template-columns:1fr;padding:20px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+.credit{position:relative;z-index:1;text-align:center;padding:0 22px 34px}
+.credit span{display:inline-block;padding:10px 22px;border-radius:99px;font-size:.9rem;color:var(--muted)}
+.credit b{color:var(--ink);font-weight:600;background:linear-gradient(120deg,var(--lilac),var(--orchid));-webkit-background-clip:text;background-clip:text;color:transparent}
